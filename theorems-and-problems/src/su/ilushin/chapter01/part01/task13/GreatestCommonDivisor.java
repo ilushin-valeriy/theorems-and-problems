@@ -22,13 +22,76 @@ public class GreatestCommonDivisor {
     long x, y;
     long result;
 
-    long m = a;
-    long n = b;
+
+    long d = 1;
+    long a1 = a, b1 = b;
+
+    //a=a1*d; b=b1*d
+    while ((((a1 % 2) == 0) && ((b1 % 2) == 0))) {
+      d *= 2;
+      a1 /= 2;
+      b1 /= 2;
+
+    }
+
+    long m = a1;
+    long n = b1;
+    long d1 = 1;
     long p = 1, q = 0, r = 0, s = 1;
 
-    //m = p*a+q*b; n = r*a+s*b
+    //m = p*a1+q*b1; n = r*a1+s*b1
     while ((n != 0) && (m != 0)) {
-      if (n > m) {
+      if (((n % 2) == 0) && ((m % 2) == 0)) {
+        d1 *= 2;
+
+        m /= 2;
+        if (((p % 2) == 0) && ((q % 2) == 0)) {
+          p /= 2;
+          q /= 2;
+        } else {
+          p += b1;
+          q -= a1;
+          p /= 2;
+          q /= 2;
+        }
+
+        n /= 2;
+        if (((r % 2) == 0) && ((s % 2) == 0)) {
+          r /= 2;
+          s /= 2;
+        } else {
+          r += b1;
+          s -= a1;
+          r /= 2;
+          s /= 2;
+        }
+
+      } else if (((n % 2) == 1) && ((m % 2) == 0)) {
+        m /= 2;
+
+        if (((p % 2) == 0) && ((q % 2) == 0)) {
+          p /= 2;
+          q /= 2;
+        } else {
+          p += b1;
+          q -= a1;
+          p /= 2;
+          q /= 2;
+
+        }
+
+      } else if (((n % 2) == 0) && ((m % 2) == 1)) {
+        n /= 2;
+        if (((r % 2) == 0) && ((s % 2) == 0)) {
+          r /= 2;
+          s /= 2;
+        } else {
+          r += b1;
+          s -= a1;
+          r /= 2;
+          s /= 2;
+        }
+      } else if (n > m) {
         n -= m;
 
         r -= p;
@@ -51,6 +114,10 @@ public class GreatestCommonDivisor {
       y = s;
     }
 
+
+    result *= (d1 * d);
+    x *= d1 ;
+    y *= d1;
     System.out.printf("GDCE = %d = %d*%d + %d*%d = %d\n", result, x, a, y, b, (x * a + y * b));
     return result;
 
@@ -111,7 +178,7 @@ public class GreatestCommonDivisor {
     }
 
     System.out.printf("GDCE2 = LCM = %d, %d = %d*%d + %d*%d = %d\n", lcm, gdc, x, a, y, b, (x * a + y * b));
-    System.out.printf("%d = %d*%d = %d\n", lcm*gdc, lcm,gdc, a*b);
+    System.out.printf("%d = %d*%d = %d\n", lcm * gdc, lcm, gdc, a * b);
     return needLCM ? lcm : gdc;
   }
 
@@ -127,11 +194,11 @@ public class GreatestCommonDivisor {
 
     long a = 24;
 
-    for (long i = 0; i <= 15; i++) {
+    for (long i = 0; i <= 17; i++) {
       System.out.printf("GCD  : GDC  (%d,%d) = %d \n", a, i, getGDC(i, a));
       System.out.printf("GCD  : GDCE (%d,%d) = %d \n", a, i, getGDCByEuclidean(i, a));
-      System.out.printf("GCD  : GDCE2(%d,%d) = %d \n", a, i, getGDC2(i, a));
-      System.out.printf("GCD  : LCME2(%d,%d) = %d \n", a, i, getLCM2(i, a));
+//      System.out.printf("GCD  : GDCE2(%d,%d) = %d \n", a, i, getGDC2(i, a));
+//      System.out.printf("GCD  : LCME2(%d,%d) = %d \n", a, i, getLCM2(i, a));
 
       System.out.println();
     }
