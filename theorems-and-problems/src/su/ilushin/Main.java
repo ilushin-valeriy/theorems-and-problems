@@ -15,14 +15,18 @@ import su.ilushin.chapter01.part01.task28.CircleInequality;
 import su.ilushin.chapter01.part01.task30.InverseNumberInspector;
 import su.ilushin.chapter01.part01.task33.FunctionEvaluator;
 import su.ilushin.chapter01.part01.task35.Divider;
+import su.ilushin.chapter01.part02.task01.ArrayPrimitiveOperations;
+import su.ilushin.chapter01.part02.task09.IslandCounter;
+import su.ilushin.chapter01.part02.task10.ArrayTransfomer;
+import su.ilushin.chapter01.part02.task12.PolynomialCalculator;
 
 
 public class Main {
 
-  public static void main (String ... args){
+  public static void main(String... args) {
     System.out.println("started\n");
 
-    Divider.run();
+    PolynomialCalculator.run();
 
 
     System.out.println("\nfinished");
